@@ -70,3 +70,15 @@ background-color:#cedbef;
   top:20px;
 right: 70px;
 }
+.units{
+  position: relative;
+  bottom: 20px;
+}
+#degreeF{
+  color: black;
+  text-decoration: none;
+}
+#degreeC{
+  color: black;
+  text-decoration: none;
+}

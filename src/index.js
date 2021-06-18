@@ -61,6 +61,8 @@ function displayTelAviv (response) {
   let title = document.querySelector (`#city-name`);
   title.innerHTML = `Weather in ${response.data.name}`;
 
+   celsiusTemperature=response.data.main.temp;
+
   let description = response.data.weather[0].description;
   let desc= document.querySelector(`#description`); 
   desc.innerHTML= description; 
@@ -77,6 +79,9 @@ function displayTelAviv (response) {
    let max= Math.round(response.data.main.temp_max)  ; 
    let min= Math.round(response.data.main.temp_min)  ; 
   minMax.innerHTML= `${min}°C/${max}°C`
+
+   minTemp=response.data.main.temp_min;
+ maxTemp=response.data.main.temp_max;
 }
 
 
@@ -98,6 +103,8 @@ function displayWeather(response) {
   let temp = document.querySelector("#temp")
   temp.innerHTML= `${temperature}°C`;
 
+celsiusTemperature= response.data.main.temp;
+
 let title = document.querySelector (`#city-name`);
 title.innerHTML= `Weather in ${response.data.name}`;
 
@@ -117,6 +124,9 @@ let win= Math.round(response.data.wind.speed)  ;
    let max= Math.round(response.data.main.temp_max)  ; 
    let min= Math.round(response.data.main.temp_min)  ; 
   minMax.innerHTML= `${min}°C/${max}°C`
+
+   minTemp=response.data.main.temp_min;
+ maxTemp=response.data.main.temp_max;
 }
 
 
@@ -141,6 +151,8 @@ function showWeather(response) {
   let temp = document.querySelector("#temp");
     temp.innerHTML= `${temperature}°C`;
 
+celsiusTemperature= response.data.main.temp;
+
   let description = response.data.weather[0].description;
   let desc= document.querySelector(`#description`); 
   desc.innerHTML= description; 
@@ -156,4 +168,44 @@ function showWeather(response) {
    let max= Math.round(response.data.main.temp_max)  ; 
    let min= Math.round(response.data.main.temp_min)  ; 
   minMax.innerHTML= `${min}°C/${max}°C`
+
+ minTemp=response.data.main.temp_min;
+ maxTemp=response.data.main.temp_max;
+}
+let celsiusTemperature= null;
+let minTemp=  null;
+let maxTemp=  null;
+
+
+function convertToF(event){
+event.preventDefault();
+
+let tempElment= document.querySelector(`#temp`);
+let tempF= (`${Math.round(celsiusTemperature*1.8+32)}°F`); 
+tempElment.innerHTML=tempF
+
+let minMax= document.querySelector(`#minMax`);
+
+   let max= Math.round(maxTemp*1.8+32)  ; 
+   let min= Math.round(minTemp*1.8+32)  ;
+  minMax.innerHTML= `${min}°F/${max}°F`
+}
+
+let fDegree= document.querySelector(`#degreeF`);
+fDegree.addEventListener("click", convertToF); 
+
+let cDegree= document.querySelector(`#degreeC`);
+cDegree.addEventListener("click", convertToC); 
+
+function convertToC(event){
+event.preventDefault();
+let tempElment= document.querySelector(`#temp`);
+let tempC= (`${Math.round(celsiusTemperature)}°C`); 
+tempElment.innerHTML=tempC
+
+let minMax= document.querySelector(`#minMax`);
+
+   let max= Math.round(maxTemp)  ; 
+   let min= Math.round(minTemp)  ;
+  minMax.innerHTML= `${min}°C/${max}°C`;
 }
