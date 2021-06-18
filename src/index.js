@@ -47,8 +47,6 @@ time.innerHTML= `${hours}:${minutes}`
 
 
 let searchButton = document.querySelector(`#city-form`);
-//let degreeF= document.querySelector(`#degreeF`);
-//let degreeC= document.querySelector(`#degreeC`);
 let currentButton = document.querySelector(`#current-location-button`);
 
 let url1 = `https://api.openweathermap.org/data/2.5/weather?q=tel aviv&appid=a8f5a22819d25df63838b32e0cf4b2f4
@@ -74,6 +72,11 @@ function displayTelAviv (response) {
   let wind= document.querySelector(`#wind`); 
  let win= Math.round(response.data.wind.speed)  ; 
   wind.innerHTML= `Wind speed: ${win}km/h`
+
+   let minMax= document.querySelector(`#minMax`); 
+   let max= Math.round(response.data.main.temp_max)  ; 
+   let min= Math.round(response.data.main.temp_min)  ; 
+  minMax.innerHTML= `${min}°C/${max}°C`
 }
 
 
@@ -109,6 +112,11 @@ title.innerHTML= `Weather in ${response.data.name}`;
   let wind= document.querySelector(`#wind`); 
 let win= Math.round(response.data.wind.speed)  ;  
   wind.innerHTML= `Wind speed: ${win}km/h`
+
+  let minMax= document.querySelector(`#minMax`); 
+   let max= Math.round(response.data.main.temp_max)  ; 
+   let min= Math.round(response.data.main.temp_min)  ; 
+  minMax.innerHTML= `${min}°C/${max}°C`
 }
 
 
@@ -144,4 +152,8 @@ function showWeather(response) {
   let wind= document.querySelector(`#wind`); 
   let win= Math.round(response.data.wind.speed)  ; 
   wind.innerHTML= `Wind speed: ${win}km/h`
+  let minMax= document.querySelector(`#minMax`); 
+   let max= Math.round(response.data.main.temp_max)  ; 
+   let min= Math.round(response.data.main.temp_min)  ; 
+  minMax.innerHTML= `${min}°C/${max}°C`
 }
