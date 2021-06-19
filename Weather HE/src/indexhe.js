@@ -1,40 +1,20 @@
 let now = new Date();
 let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
+  "יום ראשון",
+  "יום שני",
+  "יום שלישי",
+  "יום רביעי",
+  "יום חמישי",
+  "יום שישי",
+  "יום שבת"
 ];
 
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
-];
 
 let day = days[now.getDay()];
-let month = months[now.getMonth()];
-let year = now.getFullYear();
-let date = now.getDate();
 let minutes= now.getMinutes(); 
 let hours= now.getHours();
 
 let time = document.querySelector(`#currentTime`);
-
-let todayDate = document.querySelector(`#todayDate`);
-todayDate.innerHTML= `${day} ${date} ${month} ${year}`; 
 
 if (hours < 10) {
     hours = `0${hours}`;
@@ -42,15 +22,16 @@ if (hours < 10) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-time.innerHTML= `${hours}:${minutes}`
 
+let todayDate = document.querySelector(`#todayDate`);
+todayDate.innerHTML= `${day} ${hours}:${minutes}`; 
 
 
 let searchButton = document.querySelector(`#city-form`);
 let currentButton = document.querySelector(`#current-location-button`);
 
 let url1 = `https://api.openweathermap.org/data/2.5/weather?q=tel aviv&appid=a8f5a22819d25df63838b32e0cf4b2f4
-&units=metric`;
+&units=metric&lang=he`;
 axios.get(url1).then(displayTelAviv);
 
 function displayTelAviv (response) {
@@ -59,21 +40,22 @@ function displayTelAviv (response) {
   temp.innerHTML= `${temperature}°C`
 
   let title = document.querySelector (`#city-name`);
-  title.innerHTML = `Weather in ${response.data.name}`;
+  title.innerHTML = `מזג אוויר ב${response.data.name}`;
 
    celsiusTemperature=response.data.main.temp;
 
   let description = response.data.weather[0].description;
-  let desc= document.querySelector(`#description`); 
-  desc.innerHTML= description; 
+  let todayDate = document.querySelector(`#todayDate`);
+todayDate.innerHTML= `${day} ${hours}:${minutes},${description}`; 
+
 
   let humidity= document.querySelector(`#humidity`); 
   let hum= response.data.main.humidity; 
-  humidity.innerHTML= `Humidity: ${hum}%`;
+  humidity.innerHTML= `לחות: ${hum}%`;
 
   let wind= document.querySelector(`#wind`); 
  let win= Math.round(response.data.wind.speed)  ; 
-  wind.innerHTML= `Wind speed: ${win}km/h`
+  wind.innerHTML= `מהירות הרוח: ${win}קמ״ש`
 
    let minMax= document.querySelector(`#minMax`); 
    let max= Math.round(response.data.main.temp_max)  ; 
@@ -94,7 +76,7 @@ event.preventDefault();
      ok(cityInput) ;
   }
   function ok(cityInput){
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=a8f5a22819d25df63838b32e0cf4b2f4&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=a8f5a22819d25df63838b32e0cf4b2f4&units=metric&lang=he`;
     axios.get(url).then(displayWeather);  
   }
 
@@ -106,19 +88,20 @@ function displayWeather(response) {
 celsiusTemperature= response.data.main.temp;
 
 let title = document.querySelector (`#city-name`);
-title.innerHTML= `Weather in ${response.data.name}`;
+title.innerHTML= `מזג אוויר ב${response.data.name}`;
 
-  let desc= document.querySelector(`#description`); 
   let description = response.data.weather[0].description;
-  desc.innerHTML= description;
+  let todayDate = document.querySelector(`#todayDate`);
+todayDate.innerHTML= `${day} ${hours}:${minutes},${description}`; 
+
   
   let humidity= document.querySelector(`#humidity`); 
   let hum= response.data.main.humidity; 
-  humidity.innerHTML= `Humidity: ${hum}%`;
+  humidity.innerHTML= `לחות: ${hum}%`;
 
   let wind= document.querySelector(`#wind`); 
 let win= Math.round(response.data.wind.speed)  ;  
-  wind.innerHTML= `Wind speed: ${win}km/h`
+  wind.innerHTML= `מהירות הרוח: ${win}קמ״ש`;
 
   let minMax= document.querySelector(`#minMax`); 
    let max= Math.round(response.data.main.temp_max)  ; 
@@ -139,13 +122,15 @@ function retrievePosition(position) {
   let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}&lang=he`;
   axios.get(url).then(showWeather);
+  console.log(lon);
+  console.log(lat);
 }
 
 function showWeather(response) {
   let title = document.querySelector(`#city-name`);
-   title.innerHTML= `Weather in ${response.data.name}`;
+title.innerHTML= `מזג אוויר ב${response.data.name}`;
 
   let temperature = Math.round(response.data.main.temp);
   let temp = document.querySelector("#temp");
@@ -154,12 +139,12 @@ function showWeather(response) {
 celsiusTemperature= response.data.main.temp;
 
   let description = response.data.weather[0].description;
-  let desc= document.querySelector(`#description`); 
-  desc.innerHTML= description; 
+  let todayDate = document.querySelector(`#todayDate`);
+todayDate.innerHTML= `${day} ${hours}:${minutes},${description}`; 
 
   let humidity= document.querySelector(`#humidity`); 
   let hum= response.data.main.humidity; 
-  humidity.innerHTML= `Humidity: ${hum}%`;
+  humidity.innerHTML= `לחות: ${hum}%`;
 
   let wind= document.querySelector(`#wind`); 
   let win= Math.round(response.data.wind.speed)  ; 
