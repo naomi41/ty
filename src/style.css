@@ -30,7 +30,7 @@ background-color:#cedbef;
    padding: 0;
    position: relative;
    left: 380px;
-   bottom: 80px;
+   bottom: 110px;
 }
 .day1{
   margin-right: 30px;
@@ -81,4 +81,9 @@ right: 70px;
 #degreeC{
   color: black;
   text-decoration: none;
+}
+#iconToday{
+  position: relative;
+  right: 20px;
+  bottom: 20px;
 }
