@@ -29,7 +29,7 @@ todayDate.innerHTML= `${day} ${hours}:${minutes}`;
 let searchButton = document.querySelector(`#city-form`);
 let currentButton = document.querySelector(`#current-location-button`);
 
-let url1 = `api.openweathermap.org/data/2.5/weather?q=tel aviv&appid=a8f5a22819d25df63838b32e0cf4b2f4&units=metric`;
+let url1 = `https://api.openweathermap.org/data/2.5/weather?q=tel aviv&appid=a8f5a22819d25df63838b32e0cf4b2f4&units=metric`;
 axios.get(url1).then(displayWeather);
 
 searchButton.addEventListener("submit", city);
@@ -112,8 +112,6 @@ let minMax= document.querySelector(`#minMax`);
    let min= Math.round(minTemp*1.8+32)  ;
   minMax.innerHTML= `${min}°F/${max}°F`
 
-  let tempElment= document.querySelector(`#temp`);
-  tempElment.classList.remove("active");
 }
 
 let fDegree= document.querySelector(`#degreeF`);
