@@ -29,8 +29,7 @@ todayDate.innerHTML= `${day} ${hours}:${minutes}`;
 let searchButton = document.querySelector(`#city-form`);
 let currentButton = document.querySelector(`#current-location-button`);
 
-let url1 = `https://api.openweathermap.org/data/2.5/weather?q=tel aviv&appid=ba4b2c56241be564da700276b58d13c2
-&units=metric`;
+let url1 = `api.openweathermap.org/data/2.5/weather?q=tel aviv&appid=a8f5a22819d25df63838b32e0cf4b2f4&units=metric`;
 axios.get(url1).then(displayWeather);
 
 searchButton.addEventListener("submit", city);
@@ -41,7 +40,8 @@ event.preventDefault();
      ok(cityInput) ;
   }
   function ok(cityInput){
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=a8f5a22819d25df63838b32e0cf4b2f4&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=a8f5a22819d25df63838b32e0cf4b2f4
+&units=metric`;
     axios.get(url).then(displayWeather);  
   }
 
@@ -51,7 +51,7 @@ function nav (){
 navigator.geolocation.getCurrentPosition(retrievePosition);
 }
 function retrievePosition(position) {
-  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiKey = "a8f5a22819d25df63838b32e0cf4b2f4";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
