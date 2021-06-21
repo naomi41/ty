@@ -9,8 +9,6 @@ let days = [
   "Saturday"
 ];
 
-
-
 let day = days[now.getDay()];
 let minutes= now.getMinutes(); 
 let hours= now.getHours();
@@ -28,11 +26,10 @@ let todayDate = document.querySelector(`#todayDate`);
 todayDate.innerHTML= `${day} ${hours}:${minutes}`; 
 
 
-
 let searchButton = document.querySelector(`#city-form`);
 let currentButton = document.querySelector(`#current-location-button`);
 
-let url1 = `https://api.openweathermap.org/data/2.5/weather?q=tel aviv&appid=a8f5a22819d25df63838b32e0cf4b2f4
+let url1 = `https://api.openweathermap.org/data/2.5/weather?q=tel aviv&appid=ba4b2c56241be564da700276b58d13c2
 &units=metric`;
 axios.get(url1).then(displayWeather);
 
@@ -47,6 +44,19 @@ event.preventDefault();
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=a8f5a22819d25df63838b32e0cf4b2f4&units=metric`;
     axios.get(url).then(displayWeather);  
   }
+
+  currentButton.addEventListener("click", nav);
+
+function nav (){
+navigator.geolocation.getCurrentPosition(retrievePosition);
+}
+function retrievePosition(position) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  axios.get(url).then(displayWeather);
+}
 
 function displayWeather(response) {
   let temperature = Math.round(response.data.main.temp);
@@ -84,20 +94,6 @@ let win= Math.round(response.data.wind.speed)  ;
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
-
-currentButton.addEventListener("click", nav);
-
-function nav (){
-navigator.geolocation.getCurrentPosition(retrievePosition);
-}
-function retrievePosition(position) {
-  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  axios.get(url).then(displayWeather);
-}
-
 let celsiusTemperature= null;
 let minTemp=  null;
 let maxTemp=  null;
@@ -115,6 +111,9 @@ let minMax= document.querySelector(`#minMax`);
    let max= Math.round(maxTemp*1.8+32)  ; 
    let min= Math.round(minTemp*1.8+32)  ;
   minMax.innerHTML= `${min}°F/${max}°F`
+
+  let tempElment= document.querySelector(`#temp`);
+  tempElment.classList.remove("active");
 }
 
 let fDegree= document.querySelector(`#degreeF`);
