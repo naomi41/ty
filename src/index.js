@@ -1,14 +1,5 @@
 let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday"
-];
-
+let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 let day = days[now.getDay()];
 let minutes= now.getMinutes(); 
 let hours= now.getHours();
@@ -92,6 +83,8 @@ let win= Math.round(response.data.wind.speed)  ;
      iconToday.setAttribute(
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
+    displayForecast();
 }
 
 let celsiusTemperature= null;
@@ -131,4 +124,30 @@ let minMax= document.querySelector(`#minMax`);
    let max= Math.round(maxTemp)  ; 
    let min= Math.round(minTemp)  ;
   minMax.innerHTML= `${min}°C/${max}°C`;
+}
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+  let forecastHTML = `<div class="row rowForecast">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+       <div class="col-2 day1">
+                <div class="card" style="width:160px ;">
+                    <div class="card-body" id="for">
+                        <h5> ${day} </h5>
+                        <img id="iconForecast" src="..." alt="">
+                        <p class="card-text"> 25°C/30°C </p>
+                    </div>
+                </div>
+            </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
 }

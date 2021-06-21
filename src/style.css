@@ -32,43 +32,24 @@ background-color:#cedbef;
    left: 380px;
    bottom: 110px;
 }
+.temp {
+  font-size: 40px;
+}
 .day1{
   margin-right: 30px;
   margin-top: 20px;
   position: relative;
-  right: 60px;
+  right: 135px;
 }
 .day2{
   margin-right: 30px;
   margin-top: 20px;
   position: relative;
-  right: 60px;
+  right: 200px;
 }
-.day3{
-  margin-right: 30px;
-  margin-top: 20px;
+.rowForecast{
   position: relative;
-  right: 60px;
-}
-.day4{
-  margin-right: 30px;
-  margin-top: 20px;
-  position: relative;
-  right: 60px;
-}
-.day5{
-  margin-right: 0;
-  margin-top: 20px;
-  position: relative;
-  right: 60px;
-}
-.temp {
-  font-size: 40px;
-}
-.p{
-  position:relative;
-  top:20px;
-right: 70px;
+  left: 70px;
 }
 .units{
   position: relative;
