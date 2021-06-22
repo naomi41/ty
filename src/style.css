@@ -4,8 +4,9 @@ max-width: 930px;
 background-color:#cedbef;
  display: block; 
  border: 1px solid #5b669b;
-  height: 500px;
+  height: 590px;
   border-radius: 15px;
+
 }
 .title1{
   color:red;
@@ -15,10 +16,10 @@ background-color:#cedbef;
 }
 .cardMain{
   margin-top: 20px;
-  background-color:#e7e7e7;
   position: relative;
   left: 90px;
   height: 200px;
+  
 }
 .form{
   margin-top: 20px;
@@ -41,25 +42,20 @@ background-color:#cedbef;
   position: relative;
   right: 135px;
 }
-
 .rowForecast{
   position: relative;
   left: 70px;
-}
-.units{
-  position: relative;
-  bottom: 20px;
-}
-#degreeF{
-  color: black;
-  text-decoration: none;
-}
-#degreeC{
-  color: black;
-  text-decoration: none;
 }
 #iconToday{
   position: relative;
   right: 20px;
   bottom: 20px;
+}
+.pa{
+  position: relative;
+  top:20px;
+}
+.cardsForecast{
+background-color:#cedbef ;
+border: none;
 }

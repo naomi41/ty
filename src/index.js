@@ -95,24 +95,6 @@ function getForecast(coord){
 }
 
 
-
-
-
-function convertToF(event){
-event.preventDefault();
-let tempElment= document.querySelector(`#temp`);
-let tempF= (`${Math.round(celsiusTemperature*1.8+32)}°F`); 
-tempElment.innerHTML=tempF
-
-let minMax= document.querySelector(`#minMax`);
-
-   let max= Math.round(maxTemp*1.8+32)  ; 
-   let min= Math.round(minTemp*1.8+32)  ;
-  minMax.innerHTML= `${min}°F/${max}°F`
-
-}
-
-
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -126,7 +108,7 @@ let forecast=response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
   let days = ["Tuesday","Wednesday","Thursday","Friday","Saturday"];
-   console.log(forecast);
+   
   let forecastHTML = `<div class="row rowForecast">`;
   forecast.forEach(function (forecastDay,index) {
     if (index < 5) {
@@ -134,7 +116,7 @@ let forecast=response.data.daily;
       forecastHTML +
       `
        <div class="col-2 day1">
-                <div class="card" style="width:160px ;">
+                <div class="card cardsForecast" style="width:160px ;">
                     <div class="card-body" id="for">
                         <h5> ${formatDay(forecastDay.dt)} </h5>
                         <img id="iconForecast" src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="">
